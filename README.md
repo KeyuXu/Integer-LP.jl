@@ -1,7 +1,7 @@
 # Optimzing-sequence-resources-by-LP
 
 ## Introduction
-An integer programming problem (called LP) is a mathematical optimization or feasibility program in which some or all of the variables are restricted to be integers. In many settings the term refers to integer linear programming (ILP), in which the objective function and the constraints (other than the integer constraints) are linear. Then we will apply this integer linear programming into optimizing sequencing animals.
+An integer linear programming problem (called LP) is a mathematical optimization or feasibility program in which some or all of the variables are restricted to be integers. In many settings the term refers to integer linear programming (ILP), in which the objective function and the constraints (other than the integer constraints) are linear. Then we will apply this integer linear programming into optimizing sequencing animals.
 
 In my project, the main objection is to select minimum animals covering all haplotypes in the population and to maximize untility for population given by fix budget of animals. And LP is compared to an existing method AlphaSeqOpt.
 
