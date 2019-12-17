@@ -13,7 +13,7 @@ Project is created with:
 
 ## Setup:
 To run this project, there are four steps:
-* simulate genotypes or haplotypes data by using Alphasim package in R, `install.packages("ALphaSim")`
+* simulate genotypes or haplotypes data by using Alphasim package in R, `install.packages("ALphaSimR")`
 * run AlphaSeqOpt to select minimum of animals based on input haplotypes data.
 * select minimum of animals in Julia LP based on getting haplotypes blocks from AlphaSeqOpt or coding, `using Pkg; Pkg.add("JuMP"); Pkg.add("GLPK") `
 * maximum largest number of haoplotypes given by certain animals by modifying Julia LP. 
