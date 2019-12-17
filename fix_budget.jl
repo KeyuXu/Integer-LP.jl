@@ -108,26 +108,26 @@ function fix_budget(hapblock)
 # given fix budget is 10, which set the rhs of second constraint equals to 10.
 # Bin means all x variables constrained to be one or zero
 
-model = Model(with_optimizer(GLPK.Optimizer))
-@variable(model, x[1:n],Bin)
-@objective(model, Max, sum([colsums[i]*x[i] for i= 1:n]))
-@constraint(model,freq1 * x .<=35)
-@constraint(model,c * x .<= 100)
+   model = Model(with_optimizer(GLPK.Optimizer))
+   @variable(model, x[1:n],Bin)
+   @objective(model, Max, sum([colsums[i]*x[i] for i= 1:n]))
+   @constraint(model,freq1 * x .<=35)
+   @constraint(model,c * x .<= 100)
 
 #Models are solved with the JuMP.optimize! function
-@time optimize!(model)
+   @time optimize!(model)
 
 #check if the solver found an optimal solution
-termination_status(model)
+   termination_status(model)
 
 # the primal only inform that the primal solutions are feasible
-primal_status(model)
+   primal_status(model)
 
 #final objective solutions
-      return objective_value(model)
+   return objective_value(model)
 end
 
-values = fix_budget(input)
+   values = fix_budget(input)
 
 #minimum of animals in the solution
 println("Objective of fix_budget: ", values)
