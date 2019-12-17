@@ -89,24 +89,24 @@ function Integer_LP(hapblock)
 # Bin means all x variables contrained to be one or zero
 # all the coefficients are set to 1 in objective. This means each  row sum >= 1
 # Each haplotype tagged at least once in constraint.
-model = Model(with_optimizer(GLPK.Optimizer))
-@variable(model, x[1:N],Bin)
-@objective(model, Min, sum([c[i]*x[i] for i= 1:N]))
-@constraint(model,con,mat * x .>=1)
+    model = Model(with_optimizer(GLPK.Optimizer))
+    @variable(model, x[1:N],Bin)
+    @objective(model, Min, sum([c[i]*x[i] for i= 1:N]))
+    @constraint(model,con,mat * x .>=1)
 
 #Models are solved with the JuMP.optimize! function
-@time optimize!(model)
+    @time optimize!(model)
 
 #check if the solver found an optimal solution
-termination_status(model)
+    termination_status(model)
 
 # the primal only inform that the primal solutions are feasible
-primal_status(model)
+    primal_status(model)
 
     return sum(num_haps), objective_value(model)
 end
 
-num_haps,value=Integer_LP(input)
+    num_haps,value=Integer_LP(input)
 
 #total number of unique haplotypes
 println("sumhaps:", num_haps)
