@@ -1,4 +1,4 @@
-# Optimzing-sequence-resources-by-ILP
+# Integer-LP
 
 ## Introduction
 An integer linear programming problem is a mathematical optimization or feasibility program in which some or all of the variables are restricted to be integers. In many settings the term refers to integer linear programming (ILP), in which the objective function and the constraints (other than the integer constraints) are linear. Then we will apply this integer linear programming into optimizing sequencing animals.
