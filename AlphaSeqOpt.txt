@@ -1,0 +1,62 @@
+#############################
+#########ALPHASEQOPTSPEC#####
+#############################
+Method                        ,1
+### ALPHASEQOPT1 PARAMETERS #
+OptimisationMethod            ,Sequence
+NumberOfChromosomes           ,1
+NumberOfSnps                  ,Constant,10000
+IndividualPhasedThreshold     ,0.9
+SnpPhasedThreshold            ,0.9
+HaplotypeThresholdPhasing     ,0.97
+HaplotypeThresholdComparing   ,0.90
+HaplotypeThresholdExcluding   ,0
+HaplotypeMismatchAllowed      ,10
+HaplotypePrinting             ,Summary
+CoreLength                    ,100
+ByPassSharedHaploDeinition    ,No
+PriorNumberOfCores            ,10,10
+SequencedIndividualFile       ,none
+IncludeSequencedIndivContrib  ,No
+IndividualsNotToSequenceFile  ,none
+MatrixOfScenariosFile         ,Scenarios.txt
+MatrixOfMetricsFile           ,Metrics.txt
+TopIndividualsFile            ,TopIndividualsToSequence.txt
+NumberOfFamiliesToSequence    ,50
+PriorSeqCostsFile             ,none
+OverallTotalCost              ,100000
+NumberOfCoverage              ,6
+AllowedCoverage               ,0,1,2,5,10,20
+EvolAlgProbOrMaxCoding        ,1
+EvolAlgPopSize                ,100
+EvolAlgOptimisationMethod     ,EvolutionaryAlgorithm
+EvolAlgOptimisationRounds     ,10
+EvolAlgOptimisationRoundsConv ,10
+EvolAlgOptimisationRoundsPrint,1
+EvolAlgRecombinationType      ,Regions
+EvolAlgRecombination          ,0.05,2.00
+EvolAlgWeightFactor           ,0.05,0.50
+EvolAlgRoundsSwapGAorDE       ,1
+CostOfLibraryPerIndividual    ,40
+CostOfLibraryOneXSequencing   ,80
+Metric                        ,Accuracy
+### ALPHASEQOPT2 PARAMETERS #
+HapIndexFile                  ,haplotypes.txt
+NumberOfIndividuals           ,15000
+NumberOfCores                 ,100
+Budget                        ,400000
+CostPerLibrary                ,40
+CostPerX                      ,80
+HaplotypeSequenceThreshold    ,10
+MaxIndCoverage                ,2
+NumberOfExchangeRounds        ,1000
+NumberOfChangesPerRound       ,25
+AlreadySequencedFile          ,alreadyseq.txt
+ExcludedFile                  ,excluded.txt
+FilterRareHaplotypes          ,Context
+PopulationFrequencyToFilter   ,2
+ContextCountFlankingHaps      ,3
+ContextCountCombinationFlanks ,2
+SecondaryHapSeqThresh         ,5
+PopFreqForSecondThresh        ,5
+
