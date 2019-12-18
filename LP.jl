@@ -6,7 +6,7 @@ function Integer_LP(hapblock)
 
     df = readdlm(hapblock,Int64)#read hapblock file
     m,n = size(df)
-    
+
 # Column 1 Individual Name
 # Column 2-3 Maternal and Paternal Haplotypes block 1
 # Column 4-5 Maternal and Paternal Haplotypes block 2
@@ -17,9 +17,9 @@ function Integer_LP(hapblock)
 
     num_haps=zeros(Int64,num_cores)
     breaks=zeros(Int64,num_cores)
-    
+
 # number of haplotypes for each block
-    
+
     for i in 1:num_cores
         num_haps[i]=length(union(df[:,2*i],df[:,2*i+1]))
     end
@@ -32,13 +32,13 @@ function Integer_LP(hapblock)
         breaks[i]=num_haps[i-1]+breaks[i-1]
     end
 
-# Need to rewrite the data in a form of a sparse matrix XMat such that 
+# Need to rewrite the data in a form of a sparse matrix XMat such that
 # Each row is one haplotype
 # Each column is one individual
 # sparse[i,j,1] if individual j has contains haplotypes i
 # Column Sums of XMat are the number of distinct haplotypes that each
 # animal possesses. Row Sums of XMat are the number of animals that each
-# contain a given haplotype   
+# contain a given haplotype
 
     rowindex=[]
     colindex=[]
@@ -64,7 +64,7 @@ function Integer_LP(hapblock)
                 push!(value[2],1)
             end
     end
-    
+
     rowindex=[rowindex[1];rowindex[2]]
     colindex=[colindex[1];colindex[2]]
     value=[value[1];value[2]]
@@ -75,12 +75,12 @@ function Integer_LP(hapblock)
 
 #End of rewrite of data. mat is ready
     M,N =size(mat)
-    
-# objective function is integer linear programming    
+
+# objective function is integer linear programming
 #It is the sum of all the x variables (one x variable for each animal)
 # (1*x1 + 1*x2 + 1*x3 + etc. ) This is why 1 is repeated in objective function
     c=ones(Int64,N)
-    
+
 # x =1 means animal choosen
 # x = 0 means animal not choosen
 # Part to implement the GLPK function
@@ -94,7 +94,7 @@ function Integer_LP(hapblock)
     @objective(model, Min, sum([c[i]*x[i] for i= 1:N]))
     @constraint(model,con,mat * x .>=1)
 
-#Models are solved with the JuMP.optimize! function
+    #Models are solved with the JuMP.optimize! function
     @time optimize!(model)
 
 #check if the solver found an optimal solution

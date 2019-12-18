@@ -4,7 +4,8 @@
 #from https://alphagenes.roslin.ed.ac.uk/wp/software-2/alphaseqopt/
 #2) copy it to your Farm home directory, and unzip the file to get to the binaries.
 # scp -P 2022 AlphaSeqOptLinux.zip yourusername@farm.cse.ucdavis.edu:.
-# unzip AlphaSeqOptLinux.zip 
+# unzip AlphaSeqOptLinux.zip
+#3) ???????
 #move this shell script, pedigree files, AlphaSeqOpt.txt LP.jl and fix_budget.jl to the TestDataASO1 folder in AlphaSeqOptLinux.
 #move Alphasim.R to the phase folder in AlphaSeqOptLinux.
 
@@ -25,6 +26,8 @@ range1=(4900 9900 14900 29900 49900)
 range2=(6000 11000 16000 31000 51000)
 
 #combine simulation, AlphaSeqOpt and LP
+#How do you get the pedigree file? Or
+#How do you generate the pedigree file?
 for ((i = 0; i < 5; i++))
 do
 	cat Pedigree${ped[i]}.txt > Pedigree.txt # change name of pedigree for each of populations
@@ -36,7 +39,7 @@ do
   Rscript --vanilla Alphasim.R $a ${gen[i]} ${ind[i]} Chromosome1.txt
 
 # save and rename haplotypes alleles files.
-  cat Chromosome1.txt > $a,${gen[i]}_haps.txt
+  mv Chromosome1.txt > $a,${gen[i]}_haps.txt
 
 # locate TestDataASO1 folder and generate new AlphaSeqOptSpec.txt to run AlphaSeqOptLinux.
   cd $RELPATH/TestDataASO1
