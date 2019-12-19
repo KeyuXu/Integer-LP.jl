@@ -8,33 +8,25 @@ args[4] = "Chromosome1.txt"
 library(AlphaSimR)
 set.seed(seed)
 # Creating 1000 Founder Haplotypes with 10 chr, chrmosome length equals to 0.015M
-founderPop = runMacs(nInd=1000, nChr=10, segSites=1000,manualGenLen=0.015)
-
+founderPop = runMacs(nInd=1000, nChr=10, segSites=1000,species = "CATTLE")
 # Setting Simulation Parameters
 SP = SimParam$new(founderPop)
-
 #the trait was controlled by 15 QTL per chromosome
 SP$addTraitA(nQtlPerChr=15)
-
 #equal ratio of sex for each generation
 SP$setGender("yes_sys")
-
 #snp array loci
 SP$addSnpChip(1000)
-
 #generate the initial population from founderpop
 pop = newPop(founderPop,simParam=SP)
 popt=c(pop)
-
 #modeling 5 generation of selection and mating
 for(generation in 1:ngenerations){
   pop = selectCross(pop=pop, nFemale=500, nMale=25, use="bv", nCrosses=1000,selectTop = TRUE,simParam=SP)
   popt = c(popt,pop)
 }
-
 # output haplotypes
 a<-pullSnpHaplo(popt, simParam=SP)
-
 # add animals id
 ind1<-rep(c(1:ninds), each = 2)
 a3<-cbind(ind1,a)
