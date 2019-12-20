@@ -17,7 +17,6 @@
 #unzip Integer-LP.jl-master.zip.
 #5)move run.sh, AlphaSeqOpt.txt, LP.jl and fix_budget.jl these four files to the TestDataASO1 folder 
 #in AlphaSeqOptLinux_2 which released from AlphaSeqOptLinux.zip.
-#cd AlphaSeqOptLinux_2
 #touch run.sh 
 #mv run.sh ~/AlphaSeqOptLinux_2/TestDataASO1
 #move other files in the same way.
