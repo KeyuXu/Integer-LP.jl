@@ -46,7 +46,11 @@ range2=(5200 8600 11600 17500 21000)
 
 for ((i = 0; i < 5; i++))
 do 
+<<<<<<< HEAD
 	Rscript --vanilla pedigree.R ${ind[i]} Pedigree.txt # get pedigrees for each populations 
+=======
+	Rscript --vanilla pedigree.R ${ind[i]} Pedigree.txt # get pedigrees for each populations
+>>>>>>> e2af5122c6e82bb2c0ecb3362bad2cc0eaeadb2c
      for a in 1 2 3  #replications for each of populations
     do
 # locate Phase folder and get haplotypes alleles from alphasim.R.
