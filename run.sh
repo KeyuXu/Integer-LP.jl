@@ -11,19 +11,27 @@
 #from https://alphagenes.roslin.ed.ac.uk/wp/software-2/alphaseqopt/
 #2)copy it to your Farm home directory, and unzip the file to get to the binaries.
 #scp -P 2022 AlphaSeqOptLinux.zip yourusername@farm.cse.ucdavis.edu:.
-#unzip AlphaSeqOptLinux.zip
-#3)move this run.sh, AlphaSeqOpt.txt LP.jl and fix_budget.jl to the TestDataASO1 folder in AlphaSeqOptLinux_2.
+#unzip AlphaSeqOptLinux.zip.
+#3)download Integer-LP.jl-master zip from Github: https://github.com/KeyuXu/Integer-LP.jl
+#4)copy it to your Farm home directory, and unzip it.
+#unzip Integer-LP.jl-master.zip.
+#5)move run.sh, AlphaSeqOpt.txt, LP.jl and fix_budget.jl these four files to the TestDataASO1 folder 
+#in AlphaSeqOptLinux_2 which released from AlphaSeqOptLinux.zip.
 #cd AlphaSeqOptLinux_2
 #touch run.sh 
 #mv run.sh ~/AlphaSeqOptLinux_2/TestDataASO1
 #move other files in the same way.
-#4)move Alphasim.R to the phase folder in AlphaSeqOptLinux_2.
+#6)move Alphasim.R to the phase folder in AlphaSeqOptLinux_2.
 #touch Alphasim.R 
 #mv Alphasim.R ~/AlphaSeqOptLinux_2/TestDataASO1/phase
+#7)Then we can submit this job in the server.
+#cd ~RELPATH/TestDataASO1
+#sbatch run.sh
 
 module load R
 module load julia/1.1.0
 
+#change obsolute path based on yourself.
 RELPATH=/home/keyu1996/alpha/AlphaSeqOptLinux_2
 
 #generation for each of five populations
@@ -38,7 +46,7 @@ range2=(5200 8600 11600 17500 21000)
 
 for ((i = 0; i < 5; i++))
 do 
-	Rscript --vanilla pedigree.R ${ind[i]} Pedigree.txt # change name of pedigree for each of populations
+	Rscript --vanilla pedigree.R ${ind[i]} Pedigree.txt # get pedigrees for each populations 
      for a in 1 2 3  #replications for each of populations
     do
 # locate Phase folder and get haplotypes alleles from alphasim.R.
